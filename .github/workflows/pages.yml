@@ -3,6 +3,7 @@ name: Deploy CompTIA site
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -11,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: comptia-pages
+  group: comptia-pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -27,6 +28,11 @@ jobs:
           touch _site/.nojekyll
           test -f _site/CNAME
           test "$(tr -d '\r\n' < _site/CNAME)" = "comptia.skunkworksacademy.com"
+          test -f _site/index.html
+          test -f _site/404.html
+          grep -q 'https://www.skunkworksacademy.com/comptia/' _site/index.html
+          grep -q 'window.location.search' _site/index.html
+          grep -q 'window.location.search' _site/404.html
 
       - name: Enforce canonical Academy v10 shell on every HTML document
         run: |
@@ -73,14 +79,24 @@ jobs:
           print(f'Verified Academy canonical v10 shell on {len(pages)} CompTIA page(s).')
           PY
 
+      - name: Verify vanity redirect contract
+        run: |
+          grep -q '<meta name="robots" content="noindex,follow"' _site/index.html
+          grep -q '<link rel="canonical" href="https://www.skunkworksacademy.com/comptia/"' _site/index.html
+          grep -q 'window.location.replace(target)' _site/index.html
+          grep -q 'window.location.replace(target)' _site/404.html
+
       - uses: actions/configure-pages@v5
+        if: github.event_name != 'pull_request'
         with:
           enablement: true
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
         with:
           path: _site
 
   deploy:
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:
