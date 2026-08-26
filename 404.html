@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,follow" />
+  <title>CompTIA | Skunkworks Academy</title>
+  <script>
+    (function () {
+      var path = window.location.pathname || '/';
+      path = path.replace(/^\/+/, '');
+      if (path.toLowerCase().startsWith('comptia/')) path = path.slice(8);
+      var target = 'https://www.skunkworksacademy.com/comptia/' + path + window.location.search + window.location.hash;
+      window.location.replace(target);
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting to the Skunkworks Academy CompTIA catalogue.</p>
+</body>
+</html>
