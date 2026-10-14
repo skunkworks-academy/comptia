@@ -22,6 +22,27 @@
     .markets{display:flex;flex-wrap:wrap;gap:10px;margin:23px 0}.market{padding:9px 13px;font-weight:650}.notice{padding:20px 24px;margin-top:25px}footer{padding:28px 0}
     @media(max-width:680px){.hero{padding:65px 0 55px}.grid{grid-template-columns:1fr}section{padding:54px 0}.top nav{gap:12px}}
   </style>
+
+  <style>
+    /* Contrast contract: scoped to this page, with Academy assets remaining the design source. */
+    :root{--comp-page:#ffffff;--comp-surface:#f3f6fa;--comp-ink:#172235;--comp-muted:#42516a;--comp-line:#cbd5e1;--comp-link:#124cb5;--comp-action:#164cb1;--comp-action-text:#ffffff;--comp-focus:#f59e0b}
+    @media(prefers-color-scheme:dark){:root{--comp-page:#0c1422;--comp-surface:#192638;--comp-ink:#f4f7fc;--comp-muted:#d1dbea;--comp-line:#50617a;--comp-link:#a6c8ff;--comp-action:#a6c8ff;--comp-action-text:#081427;--comp-focus:#ffbf47}}
+    body{background:var(--comp-page);color:var(--comp-ink)}
+    main .hero,main section{background:var(--comp-page);color:var(--comp-ink)}
+    main .hero,main section.contact{background:var(--comp-surface)}
+    main h1,main h2,main h3,main strong{color:var(--comp-ink)}
+    main p,main .intro,main .lede,main .tile p,main .notice,main .eyebrow{color:var(--comp-muted)}
+    main .tile,main [data-sk-component="card"]{background:var(--comp-surface);border:1px solid var(--comp-line);border-radius:14px;color:var(--comp-ink)}
+    main .market,main .tag{background:var(--comp-surface);border:1px solid var(--comp-line);border-radius:9px;color:var(--comp-ink)}
+    main .notice{background:var(--comp-surface);border-left:4px solid var(--comp-link);border-radius:6px}
+    main a:not([data-sk-component="button"]){color:var(--comp-link);text-decoration-thickness:2px;text-underline-offset:3px}
+    main [data-sk-component="button"][data-variant="primary"]{background:var(--comp-action);border:2px solid var(--comp-action);color:var(--comp-action-text);border-radius:10px;padding:12px 20px;font-weight:700;text-decoration:none}
+    main [data-sk-component="button"][data-variant="secondary"]{background:transparent;border:2px solid var(--comp-link);color:var(--comp-link);border-radius:10px;padding:12px 20px;font-weight:700;text-decoration:none}
+    main a:focus-visible{outline:3px solid var(--comp-focus);outline-offset:4px}
+    main p{line-height:1.7}main .tile p{line-height:1.65}
+    @media(forced-colors:active){main .tile,main .market,main .tag{border:1px solid CanvasText}main [data-sk-component="button"]{border:2px solid ButtonText}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
   <script defer src="https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.23.1&amp;rev=2026.08.23.1" data-skunkworks-global-nav="v10"></script>
 </head>
 <body>
